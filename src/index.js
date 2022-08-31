@@ -7,7 +7,6 @@ const loginController = require("./controllers/login.controller");
 const productController = require("./controllers/product.controller");
 const cartController = require("./controllers/cart.controller");
 app.use(express.json());
-
 app.use(cors({origin: true, credentials: true}));
 require("dotenv").config()
 
