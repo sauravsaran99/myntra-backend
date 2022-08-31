@@ -11,7 +11,9 @@ app.use(express.json());
 app.use(cors({origin: true, credentials: true}));
 require("dotenv").config()
 
-app.use('/', res.send('Welcome to Home'));
+app.get('/',(req,res) => {
+    return res.send('Welcome to backend server');
+  })
 app.use("/register",registerController);
 app.use("/login",loginController);
 app.use("/products",productController);
