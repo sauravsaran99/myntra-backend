@@ -8,7 +8,7 @@ const productController = require("./controllers/product.controller");
 const cartController = require("./controllers/cart.controller");
 app.use(express.json());
 app.use(cors({origin: true, credentials: true}));
-require("dotenv").config()
+require("dotenv").config();
 
 app.get('/',(req,res) => {
     return res.send('Welcome to backend server');
