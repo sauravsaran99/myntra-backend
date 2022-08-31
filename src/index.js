@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(cors({origin: true, credentials: true}));
 require("dotenv").config()
 
+app.use('/', res.send('Welcome to Home'));
 app.use("/register",registerController);
 app.use("/login",loginController);
 app.use("/products",productController);
