@@ -11,7 +11,7 @@ app.use(cors({origin: true, credentials: true}));
 require("dotenv").config();
 
 app.get('/',(req,res) => {
-    return res.send('Welcome to backend server');
+    return res.send('Welcome to backend server of myntraClone');
   })
 app.use("/register",registerController);
 app.use("/login",loginController);
