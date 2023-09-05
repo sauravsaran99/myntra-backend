@@ -6,31 +6,29 @@ const { body, validationResult } = require("express-validator");
 
 router.post(
   "",
-  body("username").isLength({ min: 3 }), body("email").isEmail(), 
-  body("email").custom(async value => {
-    const user = await User.findOne({email:value});
-    if(user)
-    {
-        throw new Error("User already exists");
+  body("username").isLength({ min: 3 }),
+  body("email").isEmail(),
+  body("email").custom(async (value) => {
+    const user = await User.findOne({ email: value });
+    if (user) {
+      throw new Error("User already exists");
     }
     return true;
-}),
-body("password").custom( value => {
-    const pattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$/;
-    console.log("val",value)
-    if(pattern.test(value) !== true)
-    {
-        throw new Error("Password is not strong ");
+  }),
+  body("password").custom((value) => {
+    const pattern =
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$/;
+    console.log("val", value);
+    if (pattern.test(value) !== true) {
+      throw new Error("Password is not strong ");
     }
-    
+
     return true;
-    
-}),
+  }),
   async (req, res) => {
     try {
-      
       const errors = validationResult(req);
-      console.log("err",errors)
+      console.log("err", errors);
       if (!errors.isEmpty()) {
         return res.send({ errors: errors.array() });
       }
